@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Code Nova – Citizen Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- ═══════ HOME PAGE ═══════ -->
+<div id="pg-home" class="page on">
+  <nav class="home-nav">
+    <div class="logo">
+      <div class="logo-mark">N</div>
+      <div class="logo-text">Code<span>Nova</span></div>
+    </div>
+    <div class="hide-mob" style="display:flex;align-items:center;gap:24px;font-size:14px;font-weight:500;color:var(--text2)">
+      <a onclick="goHome('features')" style="cursor:pointer;transition:.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text2)'">Features</a>
+      <a onclick="goHome('services-sec')" style="cursor:pointer;transition:.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text2)'">Services</a>
+      <a style="cursor:pointer;transition:.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text2)'">Help</a>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost" onclick="showLogin()">Login</button>
+      <button class="btn btn-primary" onclick="showLogin()">Register </button>
+    </div>
+  </nav>
+
+  <section class="hero" style="min-height:100vh">
+    <div>
+      <div class="hero-eyebrow"><span class="icon sm">verified</span> Government of India · Digital Citizen Platform</div>
+      <h1>One Identity.<br/>Every Service.<br/><span class="gradient">Zero Hassle.</span></h1>
+      <p>Upload your documents once. Auto-fill any government application in seconds. Track everything from a single dashboard.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" onclick="showLogin()"><span class="icon sm">rocket_launch</span> Login</button>
+        <button class="btn btn-ghost btn-lg" onclick="goHome('services-sec')"><span class="icon sm">apps</span> Explore Services</button>
+      </div>
+    </div>
+  </section>
+ <!--  
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label">Government Services</div></div>
+    <div class="stat-item"><div class="stat-num">200M+</div><div class="stat-label">Active Citizens</div></div>
+    <div class="stat-item"><div class="stat-num">2 min</div><div class="stat-label">Avg Application Time</div></div>
+    <div class="stat-item"><div class="stat-num">99.8%</div><div class="stat-label">Uptime SLA</div></div>
+  </div> -->
+
+  <section class="features-section" id="features">
+    <div class="section-title">
+      <h2>Everything a citizen needs</h2>
+      <p>A secure, fast, and intelligent platform for all your government interactions</p>
+    </div>
+    <div class="grid3">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(99,102,241,.1);color:var(--accent)"><span class="icon lg">folder_shared</span></div>
+        <h3>Secure Document Vault</h3>
+        <p>Store Aadhaar, PAN, Passport, Driving License and all certificates with AES-256 encryption. Government-verified copies always ready.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(139,92,246,.1);color:var(--accent2)"><span class="icon lg">dynamic_form</span></div>
+        <h3>Intelligent Auto-Fill</h3>
+        <p>Select any service and watch your saved profile data instantly populate every field. Only review and submit — no re-typing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><span class="icon lg">monitoring</span></div>
+        <h3>Real-Time Tracking</h3>
+        <p>Follow every application step-by-step with live status updates, automated alerts, and expected completion timelines.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(245,158,11,.1);color:var(--gold)"><span class="icon lg">shield_lock</span></div>
+        <h3>DigiLocker Integration</h3>
+        <p>Your vault syncs with the national DigiLocker system, ensuring all documents carry official government attestation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(249,115,22,.1);color:var(--orange)"><span class="icon lg">notifications_active</span></div>
+        <h3>Smart Compliance Alerts</h3>
+        <p>Never miss a renewal deadline. Get advance reminders for license expiry, tax filings, and document updates.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(99,102,241,.08);color:var(--accent)"><span class="icon lg">translate</span></div>
+        <h3>22+ Language Support</h3>
+        <p>Access the platform in all official Indian languages. Forms, documents and support available in your preferred language.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-strip" id="services-sec">
+    <div style="max-width:1100px;margin:0 auto">
+      <div class="section-title">
+        <h2>Available Services</h2>
+        <p>All major government services in one place </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-pill" onclick="showLogin()"><span class="icon">badge</span> Aadhaar Services</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">credit_card</span> PAN Card</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">book</span> Passport</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">directions_car</span> Driving License</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">description</span> Income Certificate</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">diversity_3</span> Caste Certificate</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">how_to_vote</span> Voter ID</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">home</span> Domicile Certificate</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">payments</span> GST Registration</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">health_and_safety</span> Ayushman Bharat</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">school</span> Scholarship Apply</div>
+        <div class="service-pill" onclick="showLogin()"><span class="icon">more_horiz</span> +40 more</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="home-footer">
+    <div class="logo"><div class="logo-mark">N</div><div class="logo-text">Code<span>Nova</span></div></div>
+    <p>© 2026 Government of India · All rights reserved</p>
+    <p style="color:var(--text3);font-size:12px">Privacy Policy · Terms · Grievance</p>
+  </footer>
+</div>
+
+<!-- ═══════ LOGIN PAGE ═══════ -->
+<div id="pg-login" class="page">
+  <div class="login-left">
+    <div style="max-width:400px;text-align:center">
+      <div class="logo" style="justify-content:center;margin-bottom:28px"><div class="logo-mark">N</div><div class="logo-text">Code<span>Nova</span></div></div>
+      <h2 style="font-size:28px;font-weight:800;margin-bottom:12px">India's Unified<br/>Citizen Portal</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:28px">Secure access to 50+ government services. Your verified identity, ready to deploy anywhere.</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.65);border:1px solid var(--glass-border);border-radius:var(--r2);padding:12px 16px">
+          <span class="icon" style="color:var(--green)">verified_user</span>
+          <span style="font-size:13px;color:var(--text2)">Aadhaar-linked authentication</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.65);border:1px solid var(--glass-border);border-radius:var(--r2);padding:12px 16px">
+          <span class="icon" style="color:var(--accent)">dynamic_form</span>
+          <span style="font-size:13px;color:var(--text2)">Intelligent auto-fill technology</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.65);border:1px solid var(--glass-border);border-radius:var(--r2);padding:12px 16px">
+          <span class="icon" style="color:var(--gold)">shield_lock</span>
+          <span style="font-size:13px;color:var(--text2)">Encrypted vault</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="login-right">
+    <div class="login-box">
+      <h2>Welcome back</h2>
+      <p class="sub">Sign in to your Code Nova account</p>
+      <div class="tabs">
+        <div class="tab active" id="tab-login" onclick="switchTab('login')">Login</div>
+        <div class="tab" id="tab-register" onclick="switchTab('register')">Register</div>
+      </div>
+
+      <div id="form-login" class="login-form">
+        <div class="field"><label>Mobile / Aadhaar / Email</label><input type="text" placeholder="Enter your ID" id="login-id"/></div>
+        <div class="field"><label>Password</label><input type="password" placeholder="••••••••" id="login-pass"/></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doLogin()"><span class="icon sm">login</span> Sign In</button>
+        <div class="or-divider">or</div>
+        <button class="btn btn-dark" style="width:100%;justify-content:center" onclick="doLogin()"><span class="icon sm">fingerprint</span> Login with Aadhaar OTP</button>
+        <p style="text-align:center;font-size:12px;color:var(--text3);margin-top:4px"><a style="color:var(--accent);cursor:pointer">Forgot password?</a></p>
+      </div>
+
+      <div id="form-register" class="login-form" style="display:none">
+        <div class="grid2">
+          <div class="field"><label>First Name</label><input type="text" id="reg-firstname" placeholder="Your first name"/></div>
+          <div class="field"><label>Last Name</label><input type="text" id="reg-lastname" placeholder="Your last name"/></div>
+        </div>
+        <div class="field"><label>Mobile Number</label><input type="tel" id="reg-mobile" placeholder="+91 98765 43210"/></div>
+        <div class="field"><label>Aadhaar Number</label><input type="text" id="reg-aadhaar" placeholder="XXXX XXXX XXXX"/></div>
+        <div class="field"><label>Email</label><input type="email" id="reg-email" placeholder="you@email.com"/></div>
+        <div class="field"><label>Password</label><input type="password" id="reg-pass" placeholder="Min 8 characters"/></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doLogin()"><span class="icon sm">person_add</span> Create Account</button>
+        <p style="text-align:center;font-size:12px;color:var(--text3)">By registering, you agree to our <a style="color:var(--accent);cursor:pointer">Terms of Service</a></p>
+      </div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:16px;gap:4px" onclick="showPage('pg-home')"><span class="icon sm">arrow_back</span> Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ APP SHELL ═══════ -->
+<div id="pg-app" class="page">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="logo"><div class="logo-mark">N</div><div class="logo-text">Code<span>Nova</span></div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <button class="nav-item active" id="nav-dashboard" onclick="sv('dashboard')"><span class="icon">dashboard</span> Dashboard</button>
+      <button class="nav-item" id="nav-documents" onclick="sv('documents')"><span class="icon">folder_shared</span> Document Vault</button>
+      <button class="nav-item" id="nav-services" onclick="sv('services')"><span class="icon">account_balance</span> Apply for Service</button>
+      <button class="nav-item" id="nav-tracking" onclick="sv('tracking')"><span class="icon">assignment_turned_in</span> Track Applications<span class="nav-badge">2</span></button>
+      <div class="nav-section">Account</div>
+      <button class="nav-item" id="nav-profile" onclick="sv('profile')"><span class="icon">manage_accounts</span> My Profile</button>
+      <button class="nav-item" onclick="doLogout()"><span class="icon">logout</span> Logout</button>
+    </nav>
+  </aside>
+
+  <!-- Main content area -->
+  <div class="app-main">
+    <div class="topbar" id="topbar">
+      <div class="topbar-left"><h2 id="page-title">Dashboard</h2><p id="page-sub">Welcome back</p></div>
+      <div class="topbar-right">
+        <div class="notif-btn"><span class="icon sm">notifications</span><div class="notif-dot"></div></div>
+        <div class="user-chip"><div class="avatar"><span class="avatar-initials"></span></div><span style="font-size:13px;font-weight:600" id="user-name-chip"></span></div>
+      </div>
+    </div>
+    <div class="content">
+
+      <!-- ─── DASHBOARD ─── -->
+      <div id="vw-dashboard" class="view on">
+        <div class="dash-welcome">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="badge badge-green"><span class="icon sm">verified</span> Verified Citizen</span></div>
+            <h2 style="font-size:24px;font-weight:800" id="dash-greeting">Good morning! 👋</h2>
+            <div class="citizen-id" id="dash-citizen-id">Citizen ID: IND-2026-9920-RK · Aadhaar Linked</div>
+          </div>
+          <div style="text-align:right" class="hide-mob">
+            <div style="font-size:40px;font-weight:800;font-family:'Syne',sans-serif;color:var(--accent)"></div>
+            <div style="font-size:11px;color:var(--text3)"></div>
+            <div style="font-size:11px;color:var(--green);margin-top:2px"></div>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi"><span class="icon kpi-icon">folder_shared</span><div class="kpi-label">Documents Stored</div><div class="kpi-val" style="color:var(--accent)">6</div><div class="kpi-sub">of 10 slots used</div></div>
+          <div class="kpi"><span class="icon kpi-icon">pending_actions</span><div class="kpi-label">Active Applications</div><div class="kpi-val" style="color:var(--gold)">3</div><div class="kpi-sub">1 need action</div></div>
+          <div class="kpi"><span class="icon kpi-icon">check_circle</span><div class="kpi-label">Completed Services</div><div class="kpi-val" style="color:var(--green)">6</div><div class="kpi-sub">Lifetime total</div></div>
+          <div class="kpi"><span class="icon kpi-icon">warning</span><div class="kpi-label">Renewals Due</div><div class="kpi-val" style="color:var(--red)">1</div><div class="kpi-sub">DL expires in 15d</div></div>
+        </div>
+
+        <div class="grid2" style="gap:20px">
+          <div class="card">
+            <h3 style="font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px"><span class="icon sm" style="color:var(--accent)">history</span> Recent Activity</h3>
+            <div class="timeline">
+              <div class="tl-item"><div class="tl-dot green"><span class="icon sm">check</span></div><div class="tl-content"><h4>Passport Verification Done</h4><p>Police verification complete · Sent to regional office</p><div class="time">Today, 10:42 AM</div></div></div>
+              <div class="tl-item"><div class="tl-dot orange"><span class="icon sm">warning</span></div><div class="tl-content"><h4>Driving License Expiry Alert</h4><p>DL-0420XXX expires in 15 days</p><div class="time">Yesterday</div></div></div>
+              <div class="tl-item"><div class="tl-dot blue"><span class="icon sm">upload_file</span></div><div class="tl-content"><h4>Income Certificate Uploaded</h4><p>Verified by Revenue Department</p><div class="time">3 days ago</div></div></div>
+              <div class="tl-item"><div class="tl-dot green"><span class="icon sm">check</span></div><div class="tl-content"><h4>GST Registration Approved</h4><p>GSTIN: 27ABCDE1234F1Z5</p><div class="time">Oct 12, 2025</div></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:14px">
+              <h3 style="font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px"><span class="icon sm" style="color:var(--gold)">calendar_today</span> Compliance Calendar</h3>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.5);border:1px solid var(--glass-border);text-align:center;padding-top:4px;flex-shrink:0"><div style="font-size:9px;font-weight:700;color:var(--orange);text-transform:uppercase">Apr</div><div style="font-size:16px;font-weight:800">24</div></div><div><div style="font-size:13px;font-weight:600">DL Renewal Deadline</div><div style="font-size:11px;color:var(--text3)">Driving License DL-0420XXX</div></div><span class="badge badge-red" style="margin-left:auto">Urgent</span></div>
+                <div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.5);border:1px solid var(--glass-border);text-align:center;padding-top:4px;flex-shrink:0"><div style="font-size:9px;font-weight:700;color:var(--accent);text-transform:uppercase">Mar</div><div style="font-size:16px;font-weight:800">31</div></div><div><div style="font-size:13px;font-weight:600">Income Tax Filing</div><div style="font-size:11px;color:var(--text3)">AY 2026-27 deadline</div></div><span class="badge badge-gold" style="margin-left:auto">356d left</span></div>
+              </div>
+            </div>
+            <div class="card2" style="text-align:center">
+              <span class="icon xl" style="color:var(--accent2);opacity:.4">shield_lock</span>
+              <h4 style="font-size:14px;font-weight:700;margin:8px 0 4px">Vault Security</h4>
+              <p style="font-size:12px;color:var(--text2)"></p>
+              <div style="margin:10px 0 4px;height:4px;background:rgba(255,255,255,0.65);border-radius:2px;overflow:hidden"><div style="height:100%;width:92%;background:linear-gradient(90deg,var(--accent2),var(--accent))"></div></div>
+              <p style="font-size:10px;color:var(--text3)">Security score: 92/100</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:15px;font-weight:700">Quick Apply</h3><button class="btn btn-ghost btn-sm" onclick="sv('services')">View All →</button></div>
+          <div class="grid4">
+            <button class="svc-card" onclick="openForm('passport')" style="text-align:left;cursor:pointer"><div class="svc-icon" style="background:rgba(99,102,241,.1);color:var(--accent)"><span class="icon">book</span></div><h3 style="font-size:14px">Passport</h3><p style="font-size:12px">Renew or fresh issue</p></button>
+            <button class="svc-card" onclick="openForm('dl')" style="text-align:left;cursor:pointer"><div class="svc-icon" style="background:rgba(249,115,22,.1);color:var(--orange)"><span class="icon">directions_car</span></div><h3 style="font-size:14px">Driving License</h3><p style="font-size:12px">New or renewal</p></button>
+            <button class="svc-card" onclick="openForm('income')" style="text-align:left;cursor:pointer"><div class="svc-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><span class="icon">description</span></div><h3 style="font-size:14px">Income Cert.</h3><p style="font-size:12px">Revenue dept.</p></button>
+            <button class="svc-card" onclick="openForm('caste')" style="text-align:left;cursor:pointer"><div class="svc-icon" style="background:rgba(139,92,246,.1);color:var(--accent2)"><span class="icon">diversity_3</span></div><h3 style="font-size:14px">Caste Cert.</h3><p style="font-size:12px">Social welfare</p></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── DOCUMENTS ─── -->
+      <div id="vw-documents" class="view">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+          <div><h2 style="font-size:20px;font-weight:800">Document Vault</h2><p style="color:var(--text2);font-size:13px;margin-top:2px">6 of 10 document slots used</p></div>
+          <button class="btn btn-primary" onclick="showUpload()"><span class="icon sm">add</span> Upload Document</button>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,0.5);border-radius:2px;margin-bottom:20px;overflow:hidden"><div style="height:100%;width:60%;background:linear-gradient(90deg,var(--accent2),var(--accent))"></div></div>
+
+        <h3 style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">Identity Documents</h3>
+        <div class="grid4" style="margin-bottom:24px">
+          <div class="doc-card">
+            <div class="doc-card-header"><div class="doc-icon" style="background:rgba(99,102,241,.1);color:var(--accent)"><span class="icon">fingerprint</span></div><span class="badge badge-green">Verified</span></div>
+            <div class="doc-name">Aadhaar Card</div><div class="doc-num">UIDAI · XXXX-XXXX-9021</div>
+            <div class="doc-actions"><button class="doc-btn" onclick="showDocModal('aadhaar')"><span class="icon sm">visibility</span> View</button><button class="doc-btn"><span class="icon sm">download</span></button><button class="doc-btn"><span class="icon sm">share</span></button></div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card-header"><div class="doc-icon" style="background:rgba(245,158,11,.1);color:var(--gold)"><span class="icon">credit_card</span></div><span class="badge badge-green">Verified</span></div>
+            <div class="doc-name">PAN Card</div><div class="doc-num">IT Dept · ABCDE1234F</div>
+            <div class="doc-actions"><button class="doc-btn" onclick="showDocModal('pan')"><span class="icon sm">visibility</span> View</button><button class="doc-btn"><span class="icon sm">download</span></button><button class="doc-btn"><span class="icon sm">share</span></button></div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card-header"><div class="doc-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><span class="icon">book</span></div><span class="badge badge-green">Verified</span></div>
+            <div class="doc-name">Passport</div><div class="doc-num">MEA · Exp. Dec 2029</div>
+            <div class="doc-actions"><button class="doc-btn"><span class="icon sm">visibility</span> View</button><button class="doc-btn"><span class="icon sm">download</span></button><button class="doc-btn"><span class="icon sm">share</span></button></div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card-header"><div class="doc-icon" style="background:rgba(249,115,22,.1);color:var(--orange)"><span class="icon">directions_car</span></div><span class="badge badge-orange">Expiring</span></div>
+            <div class="doc-name">Driving License</div><div class="doc-num">RTO · DL-0420XXX · 15d left</div>
+            <div class="doc-actions"><button class="doc-btn"><span class="icon sm">visibility</span> View</button><button class="doc-btn btn-danger" style="background:rgba(239,68,68,.1);color:var(--red);border-color:rgba(255,71,87,.2)" onclick="openForm('dl')"><span class="icon sm">autorenew</span> Renew</button></div>
+          </div>
+        </div>
+
+        <h3 style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">Certificates</h3>
+        <div class="grid4" style="margin-bottom:24px">
+          <div class="doc-card">
+            <div class="doc-card-header"><div class="doc-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><span class="icon">description</span></div><span class="badge badge-green">Verified</span></div>
+            <div class="doc-name">Income Certificate</div><div class="doc-num">Revenue Dept · 2026</div>
+            <div class="doc-actions"><button class="doc-btn"><span class="icon sm">visibility</span> View</button><button class="doc-btn"><span class="icon sm">download</span></button></div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card-header"><div class="doc-icon" style="background:rgba(139,92,246,.1);color:var(--accent2)"><span class="icon">diversity_3</span></div><span class="badge badge-green">Verified</span></div>
+            <div class="doc-name">Caste Certificate</div><div class="doc-num">Social Welfare · 2026</div>
+            <div class="doc-actions"><button class="doc-btn"><span class="icon sm">visibility</span> View</button><button class="doc-btn"><span class="icon sm">download</span></button></div>
+          </div>
+          <div class="doc-card uploading" onclick="showUpload()">
+            <div style="text-align:center;padding:10px 0">
+              <span class="icon lg" style="color:var(--accent);opacity:.4">add_circle</span>
+              <div style="font-size:13px;font-weight:600;color:var(--text2);margin-top:8px">Add Document</div>
+              <div style="font-size:11px;color:var(--text3);margin-top:4px">Click to upload</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">Education</h3>
+        <div class="card" style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead><tr style="border-bottom:1px solid var(--glass-border)"><th style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Degree</th><th class="hide-mob" style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Institution</th><th style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Status</th><th style="text-align:right;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Action</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--glass-border)"><td style="padding:12px"><div style="font-weight:600">BCA IT</div><div style="font-size:11px;color:var(--text3)">2027 · 8.7 CGPA</div></td><td class="hide-mob" style="padding:12px;color:var(--text2)">Srinath University</td><td style="padding:12px"><span class="badge badge-green">Attested</span></td><td style="padding:12px;text-align:right"><button class="doc-btn" style="width:auto;padding:6px 12px"><span class="icon sm">download</span></button></td></tr>
+              <tr><td style="padding:12px"><div style="font-weight:600">Senior School (12th)</div><div style="font-size:11px;color:var(--text3)">2023 · 71.2%</div></td><td class="hide-mob" style="padding:12px;color:var(--text2)">JAC</td><td style="padding:12px"><span class="badge badge-green">Attested</span></td><td style="padding:12px;text-align:right"><button class="doc-btn" style="width:auto;padding:6px 12px"><span class="icon sm">download</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─── SERVICES ─── -->
+      <div id="vw-services" class="view">
+        <div style="margin-bottom:20px">
+          <input style="width:100%;background:rgba(255,255,255,0.65);border:1px solid var(--glass-border);border-radius:var(--r);color:var(--text);font-size:14px;padding:12px 16px 12px 44px;outline:none;font-family:'DM Sans',sans-serif;transition:.2s;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%239BA3C8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:14px center" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--glass-border)'" placeholder="Search services — passport, caste certificate, GST..."/>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+          <button class="badge badge-blue" style="cursor:pointer;padding:6px 14px">All</button>
+          <button class="badge" style="cursor:pointer;padding:6px 14px;background:rgba(255,255,255,0.5);color:var(--text2)">Identity</button>
+          <button class="badge" style="cursor:pointer;padding:6px 14px;background:rgba(255,255,255,0.5);color:var(--text2)">Certificates</button>
+          <button class="badge" style="cursor:pointer;padding:6px 14px;background:rgba(255,255,255,0.5);color:var(--text2)">Finance</button>
+          <button class="badge" style="cursor:pointer;padding:6px 14px;background:rgba(255,255,255,0.5);color:var(--text2)">Health</button>
+        </div>
+        <div class="grid3">
+          <div class="svc-card" onclick="openForm('aadhaar')"><div class="svc-icon" style="background:rgba(99,102,241,.1);color:var(--accent)"><span class="icon lg">fingerprint</span></div><h3>Aadhaar Update</h3><p>Address, name or biometric update in UIDAI records</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 5–7 days</span><span class="badge badge-blue">Auto-fill</span></div></div>
+          <div class="svc-card" onclick="openForm('pan')"><div class="svc-icon" style="background:rgba(245,158,11,.1);color:var(--gold)"><span class="icon lg">credit_card</span></div><h3>PAN Card</h3><p>Apply fresh or correct existing PAN with Income Tax Dept</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 7–10 days</span><span class="badge badge-blue">Auto-fill</span></div></div>
+          <div class="svc-card" onclick="openForm('passport')"><div class="svc-icon" style="background:rgba(16,185,129,.1);color:var(--green)"><span class="icon lg">book</span></div><h3>Passport</h3><p>Fresh issue or renewal with Ministry of External Affairs</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 3–4 weeks</span><span class="badge badge-blue">Auto-fill</span></div></div>
+          <div class="svc-card" onclick="openForm('dl')"><div class="svc-icon" style="background:rgba(249,115,22,.1);color:var(--orange)"><span class="icon lg">directions_car</span></div><h3>Driving License</h3><p>Learner's permit, permanent DL or renewal via Sarathi portal</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 10–15 days</span><span class="badge badge-blue">Auto-fill</span></div></div>
+          <div class="svc-card" onclick="openForm('income')"><div class="svc-icon" style="background:rgba(16,185,129,.08);color:var(--green)"><span class="icon lg">description</span></div><h3>Income Certificate</h3><p>Official income certificate from Revenue Department / Tehsildar</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 5–7 days</span><span class="badge badge-blue">Auto-fill</span></div></div>
+          <div class="svc-card" onclick="openForm('caste')"><div class="svc-icon" style="background:rgba(139,92,246,.1);color:var(--accent2)"><span class="icon lg">diversity_3</span></div><h3>Caste Certificate</h3><p>SC / ST / OBC certificate from Social Welfare Department</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 7–10 days</span><span class="badge badge-blue">Auto-fill</span></div></div>
+          <div class="svc-card" onclick="openForm('voter')"><div class="svc-icon" style="background:rgba(239,68,68,.1);color:var(--red)"><span class="icon lg">how_to_vote</span></div><h3>Voter ID (EPIC)</h3><p>New registration, address change or correction with ECI</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 15–20 days</span><span class="badge badge-blue">Auto-fill</span></div></div>
+          <div class="svc-card" onclick="openForm('domicile')"><div class="svc-icon" style="background:rgba(99,102,241,.06);color:var(--accent)"><span class="icon lg">home</span></div><h3>Domicile Certificate</h3><p>State residency proof from District Administration</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 5–7 days</span><span class="badge badge-blue">Auto-fill</span></div></div>
+          <div class="svc-card" onclick="openForm('gst')"><div class="svc-icon" style="background:rgba(245,158,11,.08);color:var(--gold)"><span class="icon lg">payments</span></div><h3>GST Registration</h3><p>New business GST enrollment with GSTN portal</p><div class="svc-footer"><span class="svc-time"><span class="icon sm">schedule</span> 3–5 days</span><span class="badge badge-blue">Auto-fill</span></div></div>
+        </div>
+      </div>
+
+      <!-- ─── TRACKING ─── -->
+      <div id="vw-tracking" class="view">
+        <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:140px;text-align:center"><div style="font-size:28px;font-weight:800;color:var(--gold);font-family:'Syne',sans-serif">3</div><div style="font-size:11px;color:var(--text3)">Active</div></div>
+          <div class="card" style="flex:1;min-width:140px;text-align:center"><div style="font-size:28px;font-weight:800;color:var(--green);font-family:'Syne',sans-serif">6</div><div style="font-size:11px;color:var(--text3)">Completed</div></div>
+          <div class="card" style="flex:1;min-width:140px;text-align:center"><div style="font-size:28px;font-weight:800;color:var(--red);font-family:'Syne',sans-serif">1</div><div style="font-size:11px;color:var(--text3)">Need Action</div></div>
+          <div class="card" style="flex:1;min-width:140px;text-align:center"><div style="font-size:28px;font-weight:800;color:var(--accent);font-family:'Syne',sans-serif">10</div><div style="font-size:11px;color:var(--text3)">Total Ever</div></div>
+        </div>
+
+        <h3 style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">Active Applications</h3>
+
+        <div class="track-card">
+          <div class="track-header"><div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="badge badge-orange">Action Required</span></div><div style="font-weight:700;font-size:15px">Passport Re-issue (Tatkaal)</div><div class="track-ref">Ref: ND-90231823 · Submitted Apr 01, 2026</div></div><button class="btn btn-primary btn-sm" onclick="toast('Redirecting to verification...','info')">Complete Verification</button></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+          <div class="steps-row">
+            <div class="step"><div class="step-dot done"><span class="icon sm">check</span></div><div class="step-label">Submitted</div></div>
+            <div class="step"><div class="step-dot done"><span class="icon sm">check</span></div><div class="step-label">Fee Paid</div></div>
+            <div class="step"><div class="step-dot active"><span class="icon sm">person</span></div><div class="step-label">Verification</div></div>
+            <div class="step"><div class="step-dot"><span class="icon sm">print</span></div><div class="step-label">Printing</div></div>
+            <div class="step"><div class="step-dot"><span class="icon sm">local_shipping</span></div><div class="step-label">Dispatch</div></div>
+          </div>
+        </div>
+
+        <div class="track-card">
+          <div class="track-header"><div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="badge badge-blue">Under Review</span></div><div style="font-weight:700;font-size:15px">Driving License Renewal</div><div class="track-ref">Ref: DL-RNW-55219 · Submitted Apr 06, 2026</div></div><button class="btn btn-dark btn-sm">View Details</button></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+          <div class="steps-row">
+            <div class="step"><div class="step-dot done"><span class="icon sm">check</span></div><div class="step-label">Applied</div></div>
+            <div class="step"><div class="step-dot done"><span class="icon sm">check</span></div><div class="step-label">Documents</div></div>
+            <div class="step"><div class="step-dot done"><span class="icon sm">check</span></div><div class="step-label">RTO Review</div></div>
+            <div class="step"><div class="step-dot active"><span class="icon sm">print</span></div><div class="step-label">Printing</div></div>
+            <div class="step"><div class="step-dot"><span class="icon sm">local_shipping</span></div><div class="step-label">Dispatch</div></div>
+          </div>
+        </div>
+
+        <div class="track-card">
+          <div class="track-header"><div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="badge badge-green">Approved</span></div><div style="font-weight:700;font-size:15px">Caste Certificate</div><div class="track-ref">Ref: CC-SW-11234 · Submitted Apr 08, 2026</div></div><button class="btn btn-success btn-sm" onclick="toast('Certificate downloaded!','success')"><span class="icon sm">download</span> Download E-Cert</button></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        </div>
+
+        <h3 style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin:20px 0 12px">History</h3>
+        <div class="card" style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead><tr style="border-bottom:1px solid var(--glass-border)">
+              <th style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Service</th>
+              <th class="hide-mob" style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Reference</th>
+              <th class="hide-mob" style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Date</th>
+              <th style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Status</th>
+              <th style="text-align:right;padding:10px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Action</th>
+            </tr></thead>
+            <tbody id="history-tbody">
+              <tr style="border-bottom:1px solid var(--glass-border)"><td style="padding:12px"><div style="font-weight:600">Voter ID Update</div><div style="font-size:11px;color:var(--text3)">Election Commission</div></td><td class="hide-mob" style="padding:12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)">EC-99231</td><td class="hide-mob" style="padding:12px;color:var(--text2);font-size:12px">Sep 12, 2025</td><td style="padding:12px"><span class="badge badge-green">Finalized</span></td><td style="padding:12px;text-align:right"><button class="doc-btn" style="width:auto;padding:6px 12px"><span class="icon sm">download</span></button></td></tr>
+              <tr style="border-bottom:1px solid var(--glass-border)"><td style="padding:12px"><div style="font-weight:600">GST Registration</div><div style="font-size:11px;color:var(--text3)">Finance Ministry</div></td><td class="hide-mob" style="padding:12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)">GF-44120</td><td class="hide-mob" style="padding:12px;color:var(--text2);font-size:12px">Aug 04, 2025</td><td style="padding:12px"><span class="badge badge-green">Finalized</span></td><td style="padding:12px;text-align:right"><button class="doc-btn" style="width:auto;padding:6px 12px"><span class="icon sm">download</span></button></td></tr>
+              <tr><td style="padding:12px"><div style="font-weight:600">Income Certificate</div><div style="font-size:11px;color:var(--text3)">Revenue Dept.</div></td><td class="hide-mob" style="padding:12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)">IC-78341</td><td class="hide-mob" style="padding:12px;color:var(--text2);font-size:12px">Jun 19, 2025</td><td style="padding:12px"><span class="badge badge-green">Finalized</span></td><td style="padding:12px;text-align:right"><button class="doc-btn" style="width:auto;padding:6px 12px"><span class="icon sm">download</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─── APPLICATION FORM ─── -->
+      <div id="vw-form" class="view">
+        <div id="form-content"></div>
+      </div>
+
+      <!-- ─── PROFILE ─── -->
+      <div id="vw-profile" class="view">
+        <div class="grid2" style="gap:20px">
+          <div class="card">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+              <div id="pv-avatar" style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;flex-shrink:0" class="avatar-initials">RK</div>
+              <div>
+                <h3 id="pv-name" style="font-size:18px;font-weight:800"></h3>
+                <p id="pv-citizen-id" style="color:var(--text2);font-size:13px">Citizen ID: IND-2024-9920-RK</p>
+                <span class="badge badge-green" style="margin-top:4px"><span class="icon sm">verified</span> Fully Verified</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div style="display:flex;flex-direction:column;gap:12px;font-size:13px">
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Date of Birth</span><span id="pv-dob" style="font-weight:600">—</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Gender</span><span id="pv-gender" style="font-weight:600">—</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Mobile</span><span id="pv-mobile" style="font-weight:600">—</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Email</span><span id="pv-email" style="font-weight:600">—</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Aadhaar</span><span id="pv-aadhaar" class="mono" style="font-weight:600">—</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">PAN</span><span id="pv-pan" class="mono" style="font-weight:600">—</span></div>
+            </div>
+            <button class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:16px" onclick="openEditProfile()"><span class="icon sm">edit</span> Edit Profile</button>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:14px">
+              <h3 style="font-size:14px;font-weight:700;margin-bottom:14px">Address Details</h3>
+              <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+                <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">House/Flat</span><span id="pv-address">—</span></div>
+                <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">City</span><span id="pv-city">—</span></div>
+                <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">State</span><span id="pv-state">—</span></div>
+                <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">PIN Code</span><span id="pv-pin" class="mono">—</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <h3 style="font-size:14px;font-weight:700;margin-bottom:14px">Linked Documents</h3>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:13px">Aadhaar</span><span class="badge badge-green">Linked</span></div>
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:13px">PAN Card</span><span class="badge badge-green">Linked</span></div>
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:13px">Driving License</span><span class="badge badge-orange">Expiring</span></div>
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:13px">Passport</span><span class="badge badge-green">Linked</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /app-main -->
+</div><!-- /pg-app -->
+
+<!-- ═══════ MODALS ═══════ -->
+<div id="modal" class="modal-overlay" style="display:none" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box" onclick="event.stopPropagation()"></div>
+</div>
+
+<!-- ═
+<!-- ═══════ TOAST CONTAINER ═══════ -->
+<div id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
